@@ -40,7 +40,7 @@ class Bot(commands.Bot):
             return
 
         if message.content.startswith('!hello'):
-            await message.reply('!hello', mention_author=True)
+            await message.reply('Hello!', mention_author=True)
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
