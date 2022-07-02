@@ -5,8 +5,6 @@ from discord.ext import commands
 import asyncio
 import asyncpg
 
-logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
-
 async def run():
     description = "A bot written in Python that uses asyncpg to connect to a postgreSQL database."
 
@@ -44,6 +42,7 @@ class Bot(commands.Bot):
         if message.content.startswith('!hello'):
             await message.reply('!hello', mention_author=True)
 
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(run())
