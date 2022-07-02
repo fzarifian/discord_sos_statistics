@@ -1,1 +1,1 @@
-worker: python3 sos_statistics.py
+worker: python sos_statistics.py
