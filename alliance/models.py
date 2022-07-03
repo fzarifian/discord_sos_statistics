@@ -26,7 +26,7 @@ class Alliance(models.Model):
     instance = models.ForeignKey(Instance, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '[%i] %s' % (self.tag, self.name)
+        return '[%s] %s' % (self.tag, self.name)
 
 class Event(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
