@@ -21,7 +21,6 @@ class AllianceAdmin(admin.ModelAdmin):
         (None,               {'fields': ['instance', 'name', 'tag']}),
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
-    inlines = [PlayerInline]
 
 class GameAdmin(admin.ModelAdmin):
     inlines = [InstanceInline]
