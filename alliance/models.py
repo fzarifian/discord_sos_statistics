@@ -8,7 +8,7 @@ class Game(models.Model):
     url =  models.CharField(max_length=256, help_text='Define now.gg url for this game', blank=True)
 
     def __str__(self):
-        return self.question_text
+        return self.name
 
 class Instance(models.Model):
     name = models.CharField(max_length=32)
