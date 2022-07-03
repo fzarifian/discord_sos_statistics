@@ -1,16 +1,7 @@
 # requirements.txt
+-r requirements/production.txt
+
 discord
 asyncpg
 PyNaCl
 
-# django related
-gunicorn
-Django
-dj_database_url
-psycopg2
-whitenoise
-djangorestframework
-markdown
-django-filter
-django-oauth-toolkit
-django-cors-headers
