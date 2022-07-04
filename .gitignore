@@ -280,3 +280,4 @@ vendors.js
 *.min.js
 .env
 .envs/*
+!.envs/.local/
