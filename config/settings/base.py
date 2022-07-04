@@ -293,9 +293,13 @@ ACCOUNT_ADAPTER = "game_statistics_for_discord.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 ACCOUNT_FORMS = {"signup": "game_statistics_for_discord.users.forms.UserSignupForm"}
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "game_statistics_for_discord.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = (
+    "game_statistics_for_discord.users.adapters.SocialAccountAdapter"
+)
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-SOCIALACCOUNT_FORMS = {"signup": "game_statistics_for_discord.users.forms.UserSocialSignupForm"}
+SOCIALACCOUNT_FORMS = {
+    "signup": "game_statistics_for_discord.users.forms.UserSocialSignupForm"
+}
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
@@ -321,7 +325,10 @@ SPECTACULAR_SETTINGS = {
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SERVERS": [
         {"url": "http://127.0.0.1:8000", "description": "Local Development server"},
-        {"url": "https://sos-statistics.herokuapp.com", "description": "Production server"},
+        {
+            "url": "https://sos-statistics.herokuapp.com",
+            "description": "Production server",
+        },
     ],
 }
 # Your stuff...

@@ -1,21 +1,25 @@
-import os
-import discord
-import logging
-from discord.ext import commands
 import asyncio
+import logging
+import os
+
 import asyncpg
+from discord.ext import commands
+
 
 async def run():
     description = (
         "A bot written in Python that uses asyncpg to connect to a postgreSQL database.",
     )
 
-    # NOTE: 127.0.0.1 is the loopback address. If your db is running on the same machine as the code,
+    # NOTE: 127.0.0.1 is the loopback address.
+    # If your db is running on the same machine as the code,
     # this address will work
     db = await asyncpg.create_pool(os.environ.get("DATABASE_URL"))
 
     # Example create table code, you'll probably change it to suit you
-    await db.execute("CREATE TABLE IF NOT EXISTS users(id bigint PRIMARY KEY, data text);")
+    await db.execute(
+        "CREATE TABLE IF NOT EXISTS users(id bigint PRIMARY KEY, data text);"
+    )
 
     bot = Bot(description=description, db=db, logging=logging)
     try:
@@ -24,12 +28,10 @@ async def run():
         await db.close()
         await bot.logout()
 
+
 class Bot(commands.Bot):
     def __init__(self, **kwargs):
-        super().__init__(
-            description=kwargs.pop("description"),
-            command_prefix="?"
-        )
+        super().__init__(description=kwargs.pop("description"), command_prefix="?")
 
         self.db = kwargs.pop("db")
 
@@ -42,8 +44,9 @@ class Bot(commands.Bot):
         if message.author.id == self.user.id:
             return
 
-        if message.content.startswith('!hello'):
-            await message.reply('Hello!', mention_author=True)
+        if message.content.startswith("!hello"):
+            await message.reply("Hello!", mention_author=True)
+
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
