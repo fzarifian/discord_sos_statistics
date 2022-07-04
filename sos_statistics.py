@@ -6,9 +6,12 @@ import asyncio
 import asyncpg
 
 async def run():
-    description = "A bot written in Python that uses asyncpg to connect to a postgreSQL database."
+    description = (
+        "A bot written in Python that uses asyncpg to connect to a postgreSQL database.",
+    )
 
-    # NOTE: 127.0.0.1 is the loopback address. If your db is running on the same machine as the code, this address will work
+    # NOTE: 127.0.0.1 is the loopback address. If your db is running on the same machine as the code,
+    # this address will work
     db = await asyncpg.create_pool(os.environ.get("DATABASE_URL"))
 
     # Example create table code, you'll probably change it to suit you
