@@ -20,6 +20,7 @@ COPY ./requirements .
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN cat /etc/ld.so.conf \
+  && ls /etc/ld.so.conf.d \
   && pkg-config pip wheel --wheel-dir /usr/src/app/wheels -r ${BUILD_ENVIRONMENT}.txt
 
 
