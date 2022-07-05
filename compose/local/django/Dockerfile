@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 COPY ./requirements .
 
 # Create Python Dependency and Sub-Dependency Wheels.
-RUN CFLAGS=$(pkg-config --cflags libffi) LDFLAGS=$(pkg-config --libs libffi) \
-  pip wheel --wheel-dir /usr/src/app/wheels -r ${BUILD_ENVIRONMENT}.txt
+RUN cat /etc/ld.so.conf && ldconfig \
+  && pip wheel --wheel-dir /usr/src/app/wheels -r ${BUILD_ENVIRONMENT}.txt
 
 
 # Python 'run' stage
