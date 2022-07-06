@@ -11,16 +11,14 @@ ARG BUILD_ENVIRONMENT=local
 # Install apt packages
 # dependencies for building Python packages
 # psycopg2 dependencies
-RUN echo 1 && apt-get update \
+RUN apt-get update \
   && apt-get install --no-install-recommends -y build-essential libssl-dev libffi-dev python-dev
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .
 
 # Create Python Dependency and Sub-Dependency Wheels.
-RUN cat /etc/ld.so.conf \
-  && ls /etc/ld.so.conf.d \
-  && pkg-config pip wheel --wheel-dir /usr/src/app/wheels -r ${BUILD_ENVIRONMENT}.txt
+RUN pip wheel --wheel-dir /usr/src/app/wheels -r ${BUILD_ENVIRONMENT}.txt
 
 
 # Python 'run' stage
@@ -38,8 +36,8 @@ WORKDIR ${APP_HOME}
 # Install required system dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
   # psycopg2 dependencies
-  libpq-dev \
-  libffi \
+  libpq5 \
+  libffi7 \
   # Translations dependencies
   gettext \
   # cleaning up unused files
@@ -51,7 +49,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 COPY --from=python-build-stage /usr/src/app/wheels  /wheels/
 
 # use wheels to install python dependencies
-RUN pkg-config pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
+RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 	&& rm -rf /wheels/
 
 COPY ./compose/production/django/entrypoint /entrypoint

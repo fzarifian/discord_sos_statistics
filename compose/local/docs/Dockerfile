@@ -9,12 +9,9 @@ FROM python as python-build-stage
 
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
-  # dependencies for building Python packages
-  build-essential \
-  # psycopg2 dependencies
-  libpq-dev \
-  # cleaning up unused files
+RUN apt-get update \
+  && apt-get install --no-install-recommends -y build-essential libpq-dev \
+    libssl-dev libffi-dev python-dev \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
@@ -38,7 +35,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # To run the Makefile
   make \
   # psycopg2 dependencies
-  libpq-dev \
+  libpq5 \
+  libffi7 \
   # Translations dependencies
   gettext \
   # Uncomment below lines to enable Sphinx output to latex and pdf
