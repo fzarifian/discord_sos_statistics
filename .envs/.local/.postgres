@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=game_statistics_for_discord
+POSTGRES_USER=OQvVQDxpDINAiewyDlMTrlyLuAonjSLO
+POSTGRES_PASSWORD=5Od8SSziQzDYsfJDl423YTbW3ovIVgbxTMtD9dleu4USfbJZ0cukWPL5j1qIoI5A
