@@ -11,7 +11,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 
 RUN apt-get update \
   && apt-get install --no-install-recommends -y build-essential libpq-dev \
-    libssl-dev libffi-dev python-dev \
+    libssl-dev libffi-dev python3-dev \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
@@ -19,7 +19,7 @@ RUN apt-get update \
 COPY ./requirements /requirements
 
 # create python dependency wheels
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels  \
+RUN pip3 wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels  \
   -r /requirements/local.txt -r /requirements/production.txt \
   && rm -rf /requirements
 
