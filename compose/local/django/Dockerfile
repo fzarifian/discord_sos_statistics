@@ -12,7 +12,7 @@ ARG BUILD_ENVIRONMENT=local
 # dependencies for building Python packages
 # psycopg2 dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  build-essential libffi-dev libpq-dev
+  build-essential libssl-dev libffi-dev python-dev
 
 
 # Requirements are installed here to ensure they will be cached.
